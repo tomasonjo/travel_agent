@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  neo4j:
+    image: neo4j:4.2.1
+    restart: always
+    hostname: neo4j
+    container_name: neo4j
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - ./neo4j/data:/data
+    environment:
+      - NEO4J_AUTH=neo4j/letmein
+      - NEO4JLABS_PLUGINS=["apoc", "graph-data-science"]
+  graphql:
+    build:
+      context: ./graphql
+    hostname: graphql
+    restart: always
+    container_name: graphql
+    ports:
+      - 4001:4001
+    links:
+      - neo4j
+    depends_on:
+      - neo4j
