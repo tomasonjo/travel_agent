@@ -19,9 +19,24 @@ services:
     hostname: graphql
     restart: always
     container_name: graphql
+    container_name: graphql
     ports:
       - 4001:4001
     links:
       - neo4j
     depends_on:
       - neo4j
+  ui:
+    build: ./react
+    container_name: ui
+    ports:
+      - 3000:3000
+    volumes:
+      - ./react:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - PROXY=http://api:4001/graphql
+      - REACT_APP_GRAPHQL_URI=/graphql
+    depends_on:
+      - graphql
