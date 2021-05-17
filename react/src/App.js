@@ -6,6 +6,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import ClipLoader from "react-spinners/ClipLoader";
 
 import { gql, useQuery } from "@apollo/client";
+
+const accessToken = process.env.REACT_APP_MAPBOX_TOKEN
+
 const QUERY = gql`
   query {
     monuments {
@@ -99,7 +102,7 @@ const MapResults = (props) => {
       <MapGL
         style={{ width: "100%", height: "100%" }}
         mapStyle="mapbox://styles/mapbox/light-v9"
-        accessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        accessToken={accessToken}
         latitude={viewport.latitude}
         longitude={viewport.longitude}
         zoom={viewport.zoom}

@@ -35,5 +35,6 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - REACT_APP_GRAPHQL_URI=http://localhost:4001/graphql
+      - REACT_APP_MAPBOX_TOKEN=pk.eyJ1IjoidG9tYXNvbmpvIiwiYSI6ImNrb3N6cmJnajA2b2MycmxsOGM3YzVlenYifQ.RjR5Kbd__FRF5jaGw-v4pg
     depends_on:
       - graphql
